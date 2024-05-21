@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= titre %></title>
+    <style>
+        /* Ajoutez vos styles CSS ici */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            background-color: #f8f9fa;
+            padding: 10px;
+            text-align: center;
+        }
+        header img {
+            max-width: 100px;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content h1 {
+            font-size: 24px;
+        }
+        .content p {
+            font-size: 18px;
+        }
+        .enseignants ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .enseignants li {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="/logo.png" alt="Logo de Hetic">
+        <nav>
+            <a href="/">Accueil</a>
+            <a href="/cours">Cours</a>
+            <a href="/contact">Contact</a>
+        </nav>
+    </header>
+
+    <div class="content">
+        <h1><%= titre %></h1>
+        <p><%= descriptif %></p>
+
+        <div class="enseignants">
+            <h2>Liste des enseignants :</h2>
+            <ul>
+                <% enseignants.forEach(enseignant => { %>
+                    <li><%= enseignant %></li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>Contact : <%= enseignants[0] %></p>
+    </footer>
+</body>
+</html>
