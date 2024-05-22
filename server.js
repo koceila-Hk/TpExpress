@@ -2,10 +2,14 @@ import express from 'express'
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { MongoClient } from 'mongodb';
+import cors from 'cors';
+
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json())
 
 const __filename = fileURLToPath(import.meta.url);
@@ -132,7 +136,25 @@ app.get('/cours/:numeroducours/dscr', (req, res) => {
     }
 });
 
+////////// Post form
+app.post('/form', async function (req,res){
+    const data = req.body
+    const uri='mongodb+srv://koceilaHk:4xSBU3-HTxfa5da@cluster0.hk97rdt.mongodb.net/';
+    const  client = new MongoClient(uri);
 
+    await client.connect();
+
+    const dbname ='users';
+    const collectionName = 'Users';
+
+    const database = client.db(dbname);
+    const collection = database.collection(collectionName)
+
+    const users =[]
+    users.push(data)
+
+    const insert= await collection.insertMany(recipes)
+})
 
 
 ///////// Middleware error
@@ -143,3 +165,6 @@ app.use((req, res, next) => {
 app.listen(port, () => {
     console.log(`I'm here ${port}`);
 })
+
+// 4xSBU3-HTxfa5da
+
